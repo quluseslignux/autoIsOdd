@@ -1,32 +1,31 @@
 import sys
-def generate(n):
+def generate(n:int)->None:
     file = open('gened.py', 'w+')
     isOdd=True
-    file.write("def isOdd(n):\n")
-    #file.write("n=int(sys.argv[1])\n")
+    file.write("def isOdd(n)->bool:\n")
     file.write("\tif n==1:\n")
-    file.write("\t\tprint("+str(isOdd)+")\n")
+    file.write("\t\treturn "+str(isOdd)+"\n")
     isOdd=not isOdd
     for i in range(2,n+1):
         file.write("\telif n=="+str(i)+":\n")
-        file.write("\t\tprint("+str(isOdd)+")\n")
+        file.write("\t\treturn "+str(isOdd)+"\n")
         isOdd=not isOdd
 
-def run(n):
+def run(n:int)->bool:
     import gened
-    gened.isOdd(n)
+    return gened.isOdd(n)
 
-def isOdd(n):
+def isOdd(n:int)->bool:
     generate(n)
-    run(n)
+    return run(n)
 
-def main():
+def main()->None:
     if len(sys.argv) < 2:
         n=input("Type in the input: ")
     else:
         n=sys.argv[1]
     n=int(n)
-    isOdd(n)
+    print(isOdd(n))
 
 if __name__ == "__main__":
     main()
